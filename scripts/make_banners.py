@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """
 make_banners.py - Generate 100% native vector SVG banners for SUDARSHNACHAND.
-Zero raster <image> tags so GitHub Camo never blocks or strips the banner.
-Cycles between:
-  1. Dithered Portrait Path (Sudarshan Chand)
-  2. DevOps Infinity Cycle Animation
-  3. AWS Cloud Architecture Animation
+Features:
+  - Left Panel (VISUAL.MAP): Pure vector dithered portrait of Sudarshan Chand (steady).
+  - Right Panel (SYSTEM.INFO): Live terminal HUD attributes for DevOps Engineer role.
 """
 
 from __future__ import annotations
@@ -57,7 +55,6 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
         cyan = "#22d3ee"        # Neon Cyan
         green = "#10b981"       # Mint Green
         grid_stroke = "#111c30"
-        glow = "rgba(170, 155, 239, 0.45)"
     else:
         bg = "#f8fafc"
         panel_bg = "#ffffff"
@@ -69,7 +66,6 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
         cyan = "#0f766e"        # Deep Teal
         green = "#16a34a"       # Emerald
         grid_stroke = "#e2e8f0"
-        glow = "rgba(2, 132, 199, 0.3)"
 
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="460" viewBox="0 0 1180 460" fill="none">
   <defs>
@@ -77,45 +73,9 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
     <pattern id="grid-{theme}" width="24" height="24" patternUnits="userSpaceOnUse">
       <path d="M 24 0 L 0 0 0 24" fill="none" stroke="{grid_stroke}" stroke-width="0.8" opacity="0.7"/>
     </pattern>
-
-    <!-- Linear Gradients -->
-    <linearGradient id="infGrad-{theme}" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="{cyan}"/>
-      <stop offset="50%" stop-color="{accent}"/>
-      <stop offset="100%" stop-color="{green}"/>
-    </linearGradient>
-
-    <linearGradient id="awsGrad-{theme}" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FF9900"/>
-      <stop offset="100%" stop-color="#FF5500"/>
-    </linearGradient>
   </defs>
 
   <style>
-    @keyframes cycleFrame1 {{
-      0% {{ opacity: 0; }}
-      4%, 30% {{ opacity: 1; }}
-      34%, 100% {{ opacity: 0; }}
-    }}
-    @keyframes cycleFrame2 {{
-      0%, 33% {{ opacity: 0; }}
-      37%, 63% {{ opacity: 1; }}
-      67%, 100% {{ opacity: 0; }}
-    }}
-    @keyframes cycleFrame3 {{
-      0%, 66% {{ opacity: 0; }}
-      70%, 96% {{ opacity: 1; }}
-      100% {{ opacity: 0; }}
-    }}
-
-    @keyframes flowInfinity {{
-      0% {{ stroke-dashoffset: 0; }}
-      100% {{ stroke-dashoffset: -360; }}
-    }}
-    @keyframes pulseGlow {{
-      0%, 100% {{ filter: drop-shadow(0 0 4px {glow}); }}
-      50% {{ filter: drop-shadow(0 0 12px {glow}); }}
-    }}
     @keyframes livePulse {{
       0%, 100% {{ opacity: 1; }}
       50% {{ opacity: 0.3; }}
@@ -124,17 +84,6 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
     .mono {{ font-family: "JetBrains Mono", Consolas, "Courier New", monospace; }}
     .sans {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }}
 
-    .frame-pic {{ animation: cycleFrame1 15s infinite ease-in-out; }}
-    .frame-devops {{ animation: cycleFrame2 15s infinite ease-in-out; }}
-    .frame-aws {{ animation: cycleFrame3 15s infinite ease-in-out; }}
-
-    .inf-flow {{
-      stroke-dasharray: 18 12;
-      animation: flowInfinity 4s linear infinite;
-    }}
-    .pulse-elem {{
-      animation: pulseGlow 3s ease-in-out infinite;
-    }}
     .live-dot {{
       animation: livePulse 2s infinite ease-in-out;
     }}
@@ -171,73 +120,10 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
     <!-- Content Area Background -->
     <rect x="8" y="42" width="324" height="286" rx="6" fill="{panel_bg}" opacity="0.6"/>
 
-    <!-- FRAME 1: PURE VECTOR DITHERED PORTRAIT -->
-    <g class="frame-pic">
+    <!-- PURE VECTOR DITHERED PORTRAIT (SUDARSHAN CHAND) -->
+    <g>
       <path d="{portrait_path_data}" stroke="{accent}" stroke-width="1.1" fill="none"/>
       <text x="170" y="318" fill="{accent}" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1" class="mono">[ SUDARSHAN CHAND ]</text>
-    </g>
-
-    <!-- FRAME 2: DEVOPS CYCLE INFINITY LOOP -->
-    <g class="frame-devops pulse-elem">
-      <!-- Outer/Inner Infinity loop curves -->
-      <path d="M 90,185 C 90,135 140,135 170,185 C 200,235 250,235 250,185 C 250,135 200,135 170,185 C 140,235 90,235 90,185 Z" 
-            stroke="{border}" stroke-width="12" fill="none" stroke-linecap="round"/>
-      
-      <!-- Flowing neon stream -->
-      <path d="M 90,185 C 90,135 140,135 170,185 C 200,235 250,235 250,185 C 250,135 200,135 170,185 C 140,235 90,235 90,185 Z" 
-            stroke="url(#infGrad-{theme})" stroke-width="6" fill="none" stroke-linecap="round" class="inf-flow"/>
-
-      <!-- DevOps Phase Nodes -->
-      <circle cx="112" cy="148" r="5" fill="{cyan}"/>
-      <text x="112" y="136" fill="{text_bright}" font-size="9" font-weight="700" text-anchor="middle" class="mono">PLAN</text>
-
-      <circle cx="112" cy="222" r="5" fill="{cyan}"/>
-      <text x="112" y="240" fill="{text_bright}" font-size="9" font-weight="700" text-anchor="middle" class="mono">BUILD</text>
-
-      <circle cx="228" cy="148" r="5" fill="{green}"/>
-      <text x="228" y="136" fill="{text_bright}" font-size="9" font-weight="700" text-anchor="middle" class="mono">DEPLOY</text>
-
-      <circle cx="228" cy="222" r="5" fill="{green}"/>
-      <text x="228" y="240" fill="{text_bright}" font-size="9" font-weight="700" text-anchor="middle" class="mono">MONITOR</text>
-
-      <!-- Center Logo -->
-      <circle cx="170" cy="185" r="14" fill="{panel_bg}" stroke="{accent}" stroke-width="2"/>
-      <text x="170" y="189" fill="{accent}" font-size="10" font-weight="800" text-anchor="middle" class="mono">CI/CD</text>
-
-      <!-- Labels -->
-      <text x="170" y="285" fill="{cyan}" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5" class="mono">DEVOPS LIFECYCLE</text>
-      <text x="170" y="305" fill="{text_dim}" font-size="10" text-anchor="middle" class="mono">CONTINUOUS INTEGRATION &amp; DEPLOY</text>
-    </g>
-
-    <!-- FRAME 3: AWS CLOUD ARCHITECTURE -->
-    <g class="frame-aws pulse-elem">
-      <g transform="translate(95, 95)">
-        <path d="M 40,80 A 28,28 0 0,1 78,40 A 42,42 0 0,1 138,48 A 30,30 0 0,1 155,75 A 24,24 0 0,1 150,110 L 40,110 A 25,25 0 0,1 40,80 Z" 
-              fill="{panel_bg}" stroke="url(#awsGrad-{theme})" stroke-width="4" stroke-linejoin="round"/>
-        
-        <path d="M 42,128 Q 95,155 148,130" stroke="#FF9900" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-        <path d="M 148,130 L 138,124 M 148,130 L 140,138" stroke="#FF9900" stroke-width="4" stroke-linecap="round"/>
-
-        <text x="96" y="82" fill="#FF9900" font-size="16" font-weight="900" text-anchor="middle" letter-spacing="2" class="mono">AWS</text>
-        <text x="96" y="98" fill="{text_dim}" font-size="9" font-weight="600" text-anchor="middle" class="mono">CLOUD PLATFORM</text>
-      </g>
-
-      <g transform="translate(45, 235)">
-        <rect x="0" y="0" width="55" height="22" rx="4" fill="{panel_bg}" stroke="#FF9900" stroke-width="1"/>
-        <text x="27" y="15" fill="{text_bright}" font-size="10" font-weight="700" text-anchor="middle" class="mono">EKS</text>
-
-        <rect x="65" y="0" width="55" height="22" rx="4" fill="{panel_bg}" stroke="#FF9900" stroke-width="1"/>
-        <text x="92" y="15" fill="{text_bright}" font-size="10" font-weight="700" text-anchor="middle" class="mono">EC2</text>
-
-        <rect x="130" y="0" width="55" height="22" rx="4" fill="{panel_bg}" stroke="#FF9900" stroke-width="1"/>
-        <text x="157" y="15" fill="{text_bright}" font-size="10" font-weight="700" text-anchor="middle" class="mono">S3</text>
-
-        <rect x="195" y="0" width="55" height="22" rx="4" fill="{panel_bg}" stroke="#FF9900" stroke-width="1"/>
-        <text x="222" y="15" fill="{text_bright}" font-size="10" font-weight="700" text-anchor="middle" class="mono">IAM</text>
-      </g>
-
-      <text x="170" y="285" fill="#FF9900" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5" class="mono">AMAZON WEB SERVICES</text>
-      <text x="170" y="305" fill="{text_dim}" font-size="10" text-anchor="middle" class="mono">HIGH AVAILABILITY · RESILIENT INFRA</text>
     </g>
 
     <text x="0" y="358" fill="{text_dim}" font-size="10" class="mono">PTS 18000 · FS/SERPENTINE</text>
@@ -323,7 +209,7 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
 def main():
     print("Loading portrait points...")
     portrait_path_data = load_portrait_path()
-    print(f"Portrait path generated ({len(portrait_path_data)} chars).")
+    print(f"Portrait path loaded ({len(portrait_path_data)} chars).")
 
     for theme in ("dark", "light"):
         svg = generate_banner(theme, portrait_path_data)
