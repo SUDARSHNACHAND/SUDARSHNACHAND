@@ -1,29 +1,51 @@
 #!/usr/bin/env python3
 """
-make_banners.py - Generate animated terminal HUD profile banners for SUDARSHNACHAND.
-Cycles through:
-  1. Dithered Portrait (Sudarshan Chand)
+make_banners.py - Generate 100% native vector SVG banners for SUDARSHNACHAND.
+Zero raster <image> tags so GitHub Camo never blocks or strips the banner.
+Cycles between:
+  1. Dithered Portrait Path (Sudarshan Chand)
   2. DevOps Infinity Cycle Animation
   3. AWS Cloud Architecture Animation
 """
 
 from __future__ import annotations
-import base64
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 
-def get_b64(path: Path) -> str:
-    if path.exists():
-        return base64.b64encode(path.read_bytes()).decode("ascii")
-    return ""
+def load_portrait_path() -> str:
+    txt_file = ASSETS / "portrait-points.txt"
+    if not txt_file.exists():
+        return ""
+    
+    points = []
+    with open(txt_file, "r", encoding="ascii") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                x, y = line.split(",")
+                points.append((int(x), int(y)))
 
-def generate_banner(theme: str) -> str:
+    # Sort by Y then X
+    unique = sorted(set(points), key=lambda p: (p[1], p[0]))
+    chunks = []
+    i = 0
+    n = len(unique)
+    while i < n:
+        x0, y = unique[i]
+        x1 = x0
+        i += 1
+        while i < n and unique[i][1] == y and unique[i][0] <= x1 + 1:
+            x1 = unique[i][0]
+            i += 1
+        chunks.append(f"M{x0} {y}h{x1 - x0 + 1}")
+    return "".join(chunks)
+
+def generate_banner(theme: str, portrait_path_data: str) -> str:
     is_dark = (theme == "dark")
     
-    # Palette definition
     if is_dark:
         bg = "#070c18"
         panel_bg = "#0a1122"
@@ -49,9 +71,7 @@ def generate_banner(theme: str) -> str:
         grid_stroke = "#e2e8f0"
         glow = "rgba(2, 132, 199, 0.3)"
 
-    portrait_b64 = get_b64(ASSETS / f"portrait-{theme}.png")
-
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1180" height="460" viewBox="0 0 1180 460" fill="none">
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="460" viewBox="0 0 1180 460" fill="none">
   <defs>
     <!-- Background Grid Pattern -->
     <pattern id="grid-{theme}" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -151,9 +171,9 @@ def generate_banner(theme: str) -> str:
     <!-- Content Area Background -->
     <rect x="8" y="42" width="324" height="286" rx="6" fill="{panel_bg}" opacity="0.6"/>
 
-    <!-- FRAME 1: DITHERED PORTRAIT -->
+    <!-- FRAME 1: PURE VECTOR DITHERED PORTRAIT -->
     <g class="frame-pic">
-      <image xlink:href="data:image/png;base64,{portrait_b64}" href="data:image/png;base64,{portrait_b64}" x="40" y="44" width="260" height="282" preserveAspectRatio="xMidYMid slice"/>
+      <path d="{portrait_path_data}" stroke="{accent}" stroke-width="1.1" fill="none"/>
       <text x="170" y="318" fill="{accent}" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1" class="mono">[ SUDARSHAN CHAND ]</text>
     </g>
 
@@ -301,14 +321,18 @@ def generate_banner(theme: str) -> str:
     return svg
 
 def main():
+    print("Loading portrait points...")
+    portrait_path_data = load_portrait_path()
+    print(f"Portrait path generated ({len(portrait_path_data)} chars).")
+
     for theme in ("dark", "light"):
-        svg = generate_banner(theme)
+        svg = generate_banner(theme, portrait_path_data)
         out_file = ASSETS / f"banner-{theme}.svg"
         out_file.write_text(svg, encoding="utf-8")
         
         # Verify XML validity!
         ET.fromstring(svg)
-        print(f"Validated and generated {out_file}")
+        print(f"Validated and generated {out_file} ({len(svg) // 1024} KB)")
 
 if __name__ == "__main__":
     main()
