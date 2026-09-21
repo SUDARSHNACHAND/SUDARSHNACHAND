@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="400" viewBox="0 0 1180 400" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#aa9bef" />
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <style>
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    @keyframes scanline {
+      0% { transform: translateY(-400px); }
+      100% { transform: translateY(400px); }
+    }
+    .pulse { animation: pulseDot 2.5s infinite ease-in-out; transform-origin: center; }
+    .mono { font-family: "JetBrains Mono", Consolas, "Courier New", monospace; }
+    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  </style>
+
+  <!-- Background Base -->
+  <rect width="1180" height="400" rx="14" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="1.5"/>
+  <rect width="1180" height="400" rx="14" fill="url(#grid)"/>
+
+  <!-- Top Terminal Window Bar -->
+  <rect x="0" y="0" width="1180" height="44" rx="14" fill="#0b1120" opacity="0.95"/>
+  <line x1="0" y1="44" x2="1180" y2="44" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="28" cy="22" r="6" fill="#ef4444"/>
+  <circle cx="48" cy="22" r="6" fill="#f59e0b"/>
+  <circle cx="68" cy="22" r="6" fill="#10b981"/>
+
+  <!-- Window Title -->
+  <text x="100" y="27" fill="#64748b" font-size="13" class="mono">profile.sh — live terminal session — zsh (x86_64)</text>
+
+  <!-- Live Status Badge -->
+  <g transform="translate(1040, 14)">
+    <rect width="105" height="22" rx="11" fill="#0d241d" stroke="#10b981" stroke-width="1"/>
+    <circle cx="16" cy="11" r="4.5" fill="#10b981" class="pulse"/>
+    <text x="28" y="15" fill="#34d399" font-size="11" font-weight="600" class="mono">SYS: LIVE</text>
+  </g>
+
+  <!-- Left Column: Terminal Data Fields -->
+  <g transform="translate(48, 80)">
+    <text x="0" y="0" fill="#38bdf8" font-size="14" font-weight="700" class="mono">> sudo init --profile SUDARSHNACHAND</text>
+    
+    <g transform="translate(0, 32)">
+      <!-- Row 1 -->
+      <text x="0" y="0" fill="#64748b" font-size="13" class="mono">Subject     :</text>
+      <text x="140" y="0" fill="#f8fafc" font-size="13" font-weight="600" class="mono">Sudarshan Chand</text>
+
+      <!-- Row 2 -->
+      <text x="0" y="26" fill="#64748b" font-size="13" class="mono">Role        :</text>
+      <text x="140" y="26" fill="#aa9bef" font-size="13" font-weight="600" class="mono">Full-Stack Engineer &amp; Tech Explorer</text>
+
+      <!-- Row 3 -->
+      <text x="0" y="52" fill="#64748b" font-size="13" class="mono">Core.Stack  :</text>
+      <text x="140" y="52" fill="#e2e8f0" font-size="13" class="mono">TypeScript · Python · React · Next.js · Node.js</text>
+
+      <!-- Row 4 -->
+      <text x="0" y="78" fill="#64748b" font-size="13" class="mono">Databases   :</text>
+      <text x="140" y="78" fill="#e2e8f0" font-size="13" class="mono">PostgreSQL · MongoDB · Redis</text>
+
+      <!-- Row 5 -->
+      <text x="0" y="104" fill="#64748b" font-size="13" class="mono">Infra/Cloud :</text>
+      <text x="140" y="104" fill="#e2e8f0" font-size="13" class="mono">Docker · Git · GitHub Actions · Cloud Native</text>
+
+      <!-- Row 6 -->
+      <text x="0" y="130" fill="#64748b" font-size="13" class="mono">Status      :</text>
+      <text x="140" y="130" fill="#34d399" font-size="13" font-weight="600" class="mono">Building · Shipping · Continuous Learning</text>
+
+      <!-- Row 7 -->
+      <text x="0" y="156" fill="#64748b" font-size="13" class="mono">Grid.GitHub :</text>
+      <text x="140" y="156" fill="#38bdf8" font-size="13" class="mono">github.com/SUDARSHNACHAND</text>
+    </g>
+
+    <!-- Terminal Command Line Prompt -->
+    <g transform="translate(0, 240)">
+      <text x="0" y="0" fill="#10b981" font-size="14" font-weight="700" class="mono">sudarshan@core:~$</text>
+      <text x="165" y="0" fill="#f8fafc" font-size="14" class="mono">ready to build the future</text>
+      <rect x="365" y="-12" width="8" height="15" fill="#aa9bef" class="pulse"/>
+    </g>
+  </g>
+
+  <!-- Right Column: Visual HUD Telemetry Box -->
+  <g transform="translate(730, 78)">
+    <rect width="400" height="280" rx="10" fill="#090f1d" stroke="#1e293b" stroke-width="1.2"/>
+    
+    <!-- Header inside box -->
+    <text x="24" y="32" fill="#94a3b8" font-size="12" font-weight="600" class="mono">TELEMETRY &amp; ARCHITECTURE</text>
+    <line x1="24" y1="44" x2="376" y2="44" stroke="#1e293b" stroke-width="1"/>
+
+    <!-- Mini Visual Grid / Circuit Elements -->
+    <g transform="translate(24, 60)">
+      <text x="0" y="20" fill="#64748b" font-size="11" class="mono">ARCH_MODE</text>
+      <text x="130" y="20" fill="#aa9bef" font-size="12" font-weight="700" class="mono">DISTRIBUTED</text>
+
+      <text x="0" y="55" fill="#64748b" font-size="11" class="mono">LATENCY</text>
+      <text x="130" y="55" fill="#34d399" font-size="12" font-weight="700" class="mono">OPTIMAL (~12ms)</text>
+
+      <text x="0" y="90" fill="#64748b" font-size="11" class="mono">UPTIME</text>
+      <text x="130" y="90" fill="#38bdf8" font-size="12" font-weight="700" class="mono">99.99% READY</text>
+
+      <text x="0" y="125" fill="#64748b" font-size="11" class="mono">SECURITY</text>
+      <text x="130" y="125" fill="#f8fafc" font-size="12" font-weight="700" class="mono">ZERO TRUST / STRICT</text>
+    </g>
+
+    <!-- Progress / Activity Visuals -->
+    <g transform="translate(24, 215)">
+      <rect width="352" height="6" rx="3" fill="#1e293b"/>
+      <rect width="280" height="6" rx="3" fill="url(#cyanGrad)"/>
+      <text x="0" y="24" fill="#64748b" font-size="11" class="mono">BUFFER: 80% CAPACITY</text>
+      <text x="290" y="24" fill="#aa9bef" font-size="11" font-weight="600" class="mono">ONLINE</text>
+    </g>
+  </g>
+</svg>

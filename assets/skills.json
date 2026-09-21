@@ -1,0 +1,13 @@
+{
+  "title": "Skill Radar",
+  "_comment": "Self-rated skills (0-100). Edit these and the Charts workflow redraws the radar automatically.",
+  "axes": [
+    { "label": "Full-Stack Web",        "value": 88 },
+    { "label": "Backend & APIs",        "value": 85 },
+    { "label": "Cloud & DevOps",        "value": 80 },
+    { "label": "Database Design",       "value": 82 },
+    { "label": "System Architecture",   "value": 84 },
+    { "label": "AI & Automation",       "value": 78 },
+    { "label": "Clean Code & Testing",  "value": 86 }
+  ]
+}

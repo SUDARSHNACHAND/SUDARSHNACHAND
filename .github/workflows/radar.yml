@@ -1,0 +1,48 @@
+name: Charts and cards
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # Runs daily at 03:30 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "assets/skills.json"
+      - "assets/langmix.json"
+      - "assets/projects.json"
+      - "scripts/**"
+      - ".github/workflows/radar.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate Skill Radar
+        run: python scripts/radar.py --data assets/skills.json -o assets/radar
+
+      - name: Generate Language Radar
+        run: python scripts/radar.py --data assets/langmix.json -o assets/radar-langs --values
+
+      - name: Generate Stat Cards
+        env:
+          GITHUB_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: python scripts/cards.py --user "${{ github.repository_owner }}" --out assets
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/*.svg
+          git diff --staged --quiet || git commit -m "chore: refresh charts and cards [skip ci]"
+          git push
