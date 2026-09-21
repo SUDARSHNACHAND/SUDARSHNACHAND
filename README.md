@@ -2,9 +2,9 @@
 
 <!-- BANNER - Terminal HUD (Dynamic Dark / Light Mode with Cycling Animations: Portrait -> DevOps Cycle -> AWS Cloud) -->
 <picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.svg?v=3">
-  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg?v=3">
-  <img src="assets/banner-dark.svg?v=3" width="100%" alt="profile.sh --live">
+  <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v2.svg">
+  <img src="assets/banner-dark.v2.svg" width="100%" alt="profile.sh --live">
 </picture>
 
 <br>

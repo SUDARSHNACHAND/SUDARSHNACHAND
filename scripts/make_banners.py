@@ -213,8 +213,10 @@ def main():
 
     for theme in ("dark", "light"):
         svg = generate_banner(theme, portrait_path_data)
-        out_file = ASSETS / f"banner-{theme}.svg"
+        out_file = ASSETS / f"banner-{theme}.v2.svg"
         out_file.write_text(svg, encoding="utf-8")
+        # Also write standard name
+        (ASSETS / f"banner-{theme}.svg").write_text(svg, encoding="utf-8")
         
         # Verify XML validity!
         ET.fromstring(svg)
