@@ -1,12 +1,12 @@
 {
-  "title": "Language & Tech Stack",
-  "_comment": "Hand-authored language & stack ratings (0-100). Edit these and the Charts workflow redraws the radar.",
+  "title": "Language & IaC Stack",
+  "_comment": "Hand-authored language, script & IaC ratings (0-100). Edit these and the Charts workflow redraws the radar.",
   "axes": [
-    { "label": "TypeScript",      "value": 88 },
-    { "label": "JavaScript",      "value": 90 },
-    { "label": "Python",          "value": 85 },
-    { "label": "React / Next.js", "value": 86 },
-    { "label": "Node.js",         "value": 84 },
-    { "label": "SQL / Postgres",  "value": 80 }
+    { "label": "Python",            "value": 88 },
+    { "label": "Bash / Shell",      "value": 90 },
+    { "label": "Terraform (HCL)",   "value": 86 },
+    { "label": "JavaScript / Node", "value": 82 },
+    { "label": "Java",              "value": 78 },
+    { "label": "SQL & Databases",   "value": 80 }
   ]
 }

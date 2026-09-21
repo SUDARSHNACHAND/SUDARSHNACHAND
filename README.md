@@ -1,6 +1,6 @@
 <div align="center">
 
-<!-- BANNER - Live Terminal HUD (Dynamic Dark / Light Mode) -->
+<!-- BANNER - Terminal HUD (Dynamic Dark / Light Mode with Cycling Animations: Portrait -> DevOps Cycle -> AWS Cloud) -->
 <picture>
   <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
@@ -11,7 +11,7 @@
 
 <!-- NAME / TAGLINE - Animated Typing -->
 <a href="https://github.com/SUDARSHNACHAND">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=26&duration=2600&pause=900&color=AA9BEF&center=true&vCenter=true&width=880&lines=Sudarshan+Chand+-+Full-Stack+Engineer;Building+Modern+Web+%26+Cloud+Architectures;TypeScript+/+Python+/+Distributed+Systems;Always+Shipping+and+Exploring" alt="typing banner">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=26&duration=2600&pause=900&color=AA9BEF&center=true&vCenter=true&width=880&lines=Sudarshan+Chand+-+DevOps+Engineer;Automating+Cloud+Infra+%26+CI%2FCD+Pipelines;Kubernetes+/+AWS+/+Terraform+/+Docker;Monitoring+with+Prometheus+%26+Grafana;Reliability+%26+Automation+Obsessed" alt="typing banner">
 </a>
 
 <br>
@@ -31,23 +31,74 @@
 
 ---
 
-## ⚡ About Me
+## ⚡ This is me :)
 
-Hi, I'm **Sudarshan Chand**, a Software Engineer and Full-Stack Developer dedicated to building performant, resilient, and human-centric software.
+Hi, I'm **Sudarshan Chand**, a **DevOps Engineer &amp; Cloud Specialist** broadcasting from India 🇮🇳.  
+I build resilient cloud architectures, automate deployment pipelines, and ensure infrastructure scales effortlessly with zero downtime.
 
-- 💻 **Core Focus**: Designing end-to-end web applications, microservices, and robust backend systems.
-- 🚀 **Currently Building**: Next-generation web experiences and scalable cloud services.
-- 🧠 **Obsessions**: Clean architecture, automated CI/CD pipelines, AI integration, and developer tooling.
-- 🤝 **Collaboration**: Open to contributing to high-impact open-source projects and innovative tech products.
-- 💬 **Let's Talk**: Reach out for collaborations, system architecture discussions, or tech brainstorms!
+- ☁️ **DevOps &amp; Cloud Focus**: Architecting highly available infrastructure on **AWS** with **Terraform**, **Docker**, and **Kubernetes**.
+- 🚀 **CI/CD Automation**: Building automated end-to-end deployment pipelines using **Jenkins** and **GitHub Actions**.
+- 📊 **Observability &amp; SRE**: Designing real-time telemetry, dashboards, and alerting systems using **Prometheus** and **Grafana**.
+- 🐍 **Automation &amp; Scripting**: Automating operational workflows and cloud resources with **Python**, **Bash**, and **Node.js**.
+- 🌱 **My Mission**: Helping engineering teams ship faster, safer, and with complete operational confidence.
+- 💬 **Let's Talk**: Reach out about **DevOps culture, Kubernetes orchestration, cloud migration, or open-source infrastructure**!
 
 <br>
+
+---
 
 <div align="center">
 
 ## 🛠️ My Tech Stack
 
-<img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,nodejs,python,postgres,mongodb,redis,tailwind,git,github,docker,vscode,linux&perline=8" alt="tech stack">
+<table>
+  <tr>
+    <th align="left" width="260">Category Area</th>
+    <th align="left">Technologies &amp; Tools</th>
+  </tr>
+  <tr>
+    <td><b>☁️ Cloud &amp; Infrastructure</b></td>
+    <td>
+      <a href="https://aws.amazon.com/"><img src="https://skillicons.dev/icons?i=aws,docker,kubernetes,terraform&theme=dark" alt="Cloud and Infra"></a>
+    </td>
+  </tr>
+  <tr>
+    <td><b>🚀 CI/CD &amp; Version Control</b></td>
+    <td>
+      <a href="https://jenkins.io/"><img src="https://skillicons.dev/icons?i=jenkins,git,github&theme=dark" alt="CI/CD Tools"></a>
+    </td>
+  </tr>
+  <tr>
+    <td><b>📈 Monitoring &amp; Observability</b></td>
+    <td>
+      <a href="https://prometheus.io/"><img src="https://skillicons.dev/icons?i=prometheus,grafana&theme=dark" alt="Monitoring Tools"></a>
+    </td>
+  </tr>
+  <tr>
+    <td><b>💻 Programming &amp; Backend</b></td>
+    <td>
+      <img src="https://skillicons.dev/icons?i=python,java,js,nodejs&theme=dark" alt="Languages and Backend">
+    </td>
+  </tr>
+  <tr>
+    <td><b>🎨 Frontend &amp; Web</b></td>
+    <td>
+      <img src="https://skillicons.dev/icons?i=react,html,css&theme=dark" alt="Frontend Tools">
+    </td>
+  </tr>
+  <tr>
+    <td><b>🗄️ Databases</b></td>
+    <td>
+      <img src="https://skillicons.dev/icons?i=mongodb,mysql&theme=dark" alt="Databases">
+    </td>
+  </tr>
+  <tr>
+    <td><b>🛠️ Developer Tools &amp; IDEs</b></td>
+    <td>
+      <img src="https://skillicons.dev/icons?i=vscode,pycharm&theme=dark" alt="IDEs and Tools">&nbsp;<a href="https://jupyter.org/"><img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white" height="48" alt="Jupyter" valign="top"></a>
+    </td>
+  </tr>
+</table>
 
 </div>
 
@@ -55,27 +106,27 @@ Hi, I'm **Sudarshan Chand**, a Software Engineer and Full-Stack Developer dedica
 
 <div align="center">
 
-## 📡 Signals & Competencies
+## 📡 Signals
 
 <table>
 <tr>
 <td width="50%" align="center" valign="middle">
 
-<!-- Self-rated skill radar - edit assets/skills.json to update -->
+<!-- DevOps Competencies Radar - edit assets/skills.json to update -->
 <picture>
   <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/radar-light.svg">
-  <img src="assets/radar-dark.svg" width="400" alt="skill radar chart">
+  <img src="assets/radar-dark.svg" width="400" alt="DevOps competencies radar chart">
 </picture>
 
 </td>
 <td width="50%" align="center" valign="middle">
 
-<!-- Language stack radar - edit assets/langmix.json to update -->
+<!-- Language & IaC Stack Radar - edit assets/langmix.json to update -->
 <picture>
   <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-langs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/radar-langs-light.svg">
-  <img src="assets/radar-langs-dark.svg" width="400" alt="language radar chart">
+  <img src="assets/radar-langs-dark.svg" width="400" alt="Language and IaC stack radar chart">
 </picture>
 
 </td>
@@ -88,7 +139,7 @@ Hi, I'm **Sudarshan Chand**, a Software Engineer and Full-Stack Developer dedica
 
 <div align="center">
 
-## 📊 Numbers & Activity
+## 📊 Numbers matter? ohhh yes.
 
 <!-- Self-hosted stat cards - Generated by scripts/cards.py into this repo.
      Deliberately avoids third-party services that suffer from 503 / 402 outages. -->

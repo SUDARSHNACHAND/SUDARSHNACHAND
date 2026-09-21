@@ -1,13 +1,13 @@
 {
-  "title": "Skill Radar",
-  "_comment": "Self-rated skills (0-100). Edit these and the Charts workflow redraws the radar automatically.",
+  "title": "DevOps Competencies",
+  "_comment": "Self-rated DevOps skills (0-100). Edit these and the Charts workflow redraws the radar automatically.",
   "axes": [
-    { "label": "Full-Stack Web",        "value": 88 },
-    { "label": "Backend & APIs",        "value": 85 },
-    { "label": "Cloud & DevOps",        "value": 80 },
-    { "label": "Database Design",       "value": 82 },
-    { "label": "System Architecture",   "value": 84 },
-    { "label": "AI & Automation",       "value": 78 },
-    { "label": "Clean Code & Testing",  "value": 86 }
+    { "label": "CI/CD & Automation",        "value": 92 },
+    { "label": "Docker & Kubernetes",       "value": 90 },
+    { "label": "Cloud & AWS",               "value": 88 },
+    { "label": "Infrastructure as Code",    "value": 86 },
+    { "label": "Prometheus & Grafana",      "value": 84 },
+    { "label": "Linux & Scripting",         "value": 90 },
+    { "label": "DevSecOps & Security",      "value": 80 }
   ]
 }

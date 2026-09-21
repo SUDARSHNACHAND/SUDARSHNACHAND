@@ -1,120 +1,290 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="400" viewBox="0 0 1180 400" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="460" viewBox="0 0 1180 460" fill="none">
   <defs>
-    <linearGradient id="bgGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#f1f5f9" />
-    </linearGradient>
-    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0284c7" />
-      <stop offset="100%" stop-color="#16a34a" />
-    </linearGradient>
-    <pattern id="gridLight" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e2e8f0" stroke-width="0.8" opacity="0.8"/>
+    <!-- Background Grid Pattern -->
+    <pattern id="grid-light" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e2e8f0" stroke-width="0.8" opacity="0.7"/>
     </pattern>
+
+    <!-- Linear Gradients -->
+    <linearGradient id="infGrad-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+
+    <linearGradient id="awsGrad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9900"/>
+      <stop offset="100%" stop-color="#FF5500"/>
+    </linearGradient>
   </defs>
 
   <style>
-    @keyframes pulseDotLight {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+    @keyframes cycleFrame1 {
+      0% { opacity: 0; transform: scale(0.98); }
+      3%, 30% { opacity: 1; transform: scale(1); }
+      33%, 100% { opacity: 0; transform: scale(0.98); }
     }
-    .pulseLight { animation: pulseDotLight 2.5s infinite ease-in-out; transform-origin: center; }
+    @keyframes cycleFrame2 {
+      0%, 33% { opacity: 0; transform: scale(0.98); }
+      36%, 63% { opacity: 1; transform: scale(1); }
+      66%, 100% { opacity: 0; transform: scale(0.98); }
+    }
+    @keyframes cycleFrame3 {
+      0%, 66% { opacity: 0; transform: scale(0.98); }
+      69%, 96% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.98); }
+    }
+
+    @keyframes flowInfinity {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -360; }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(2, 132, 199, 0.3)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 12px rgba(2, 132, 199, 0.3)); transform: scale(1.02); }
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
     .mono { font-family: "JetBrains Mono", Consolas, "Courier New", monospace; }
     .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+
+    .frame-pic { animation: cycleFrame1 15s infinite ease-in-out; transform-origin: 200px 250px; }
+    .frame-devops { animation: cycleFrame2 15s infinite ease-in-out; transform-origin: 200px 250px; }
+    .frame-aws { animation: cycleFrame3 15s infinite ease-in-out; transform-origin: 200px 250px; }
+
+    .inf-flow {
+      stroke-dasharray: 18 12;
+      animation: flowInfinity 4s linear infinite;
+    }
+    .pulse-elem {
+      animation: pulseGlow 3s ease-in-out infinite;
+      transform-origin: 200px 240px;
+    }
+    .live-dot {
+      animation: livePulse 2s infinite ease-in-out;
+    }
   </style>
 
-  <!-- Background Base -->
-  <rect width="1180" height="400" rx="14" fill="url(#bgGradLight)" stroke="#cbd5e1" stroke-width="1.5"/>
-  <rect width="1180" height="400" rx="14" fill="url(#gridLight)"/>
+  <!-- Base Window Shell -->
+  <rect width="1180" height="460" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect width="1180" height="460" rx="14" fill="url(#grid-light)"/>
 
-  <!-- Top Terminal Window Bar -->
-  <rect x="0" y="0" width="1180" height="44" rx="14" fill="#f8fafc" opacity="0.95"/>
-  <line x1="0" y1="44" x2="1180" y2="44" stroke="#e2e8f0" stroke-width="1.2"/>
-  <circle cx="28" cy="22" r="6" fill="#ef4444"/>
-  <circle cx="48" cy="22" r="6" fill="#f59e0b"/>
-  <circle cx="68" cy="22" r="6" fill="#10b981"/>
+  <!-- Window Header Bar -->
+  <rect x="0" y="0" width="1180" height="42" rx="14" fill="#ffffff" opacity="0.9"/>
+  <line x1="0" y1="42" x2="1180" y2="42" stroke="#cbd5e1" stroke-width="1.2"/>
+  
+  <!-- Window Controls -->
+  <circle cx="28" cy="21" r="5.5" fill="#ef4444"/>
+  <circle cx="46" cy="21" r="5.5" fill="#f59e0b"/>
+  <circle cx="64" cy="21" r="5.5" fill="#10b981"/>
 
-  <!-- Window Title -->
-  <text x="100" y="27" fill="#64748b" font-size="13" class="mono">profile.sh — live terminal session — zsh (x86_64)</text>
+  <!-- Centered Title -->
+  <text x="590" y="26" fill="#64748b" font-size="13" text-anchor="middle" class="mono">profile.sh --live</text>
 
-  <!-- Live Status Badge -->
-  <g transform="translate(1040, 14)">
-    <rect width="105" height="22" rx="11" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
-    <circle cx="16" cy="11" r="4.5" fill="#10b981" class="pulseLight"/>
-    <text x="28" y="15" fill="#047857" font-size="11" font-weight="600" class="mono">SYS: LIVE</text>
+  <!-- ============================================================== -->
+  <!-- LEFT PANEL: VISUAL.MAP (340 x 380)                             -->
+  <!-- ============================================================== -->
+  <g transform="translate(32, 60)">
+    <!-- Header -->
+    <text x="0" y="18" fill="#0f766e" font-size="13" font-weight="700" letter-spacing="1" class="mono">VISUAL.MAP</text>
+    <text x="340" y="18" fill="#64748b" font-size="11" text-anchor="end" class="mono">300×340 / 1-BIT</text>
+
+    <!-- Corner Brackets -->
+    <!-- Top-Left -->
+    <path d="M 0 35 L 0 50 M 0 35 L 15 35" stroke="#0f766e" stroke-width="2" fill="none"/>
+    <!-- Top-Right -->
+    <path d="M 340 35 L 340 50 M 340 35 L 325 35" stroke="#0f766e" stroke-width="2" fill="none"/>
+    <!-- Bottom-Left -->
+    <path d="M 0 335 L 0 320 M 0 335 L 15 335" stroke="#0f766e" stroke-width="2" fill="none"/>
+    <!-- Bottom-Right -->
+    <path d="M 340 335 L 340 320 M 340 335 L 325 335" stroke="#0f766e" stroke-width="2" fill="none"/>
+
+    <!-- Content Area Background -->
+    <rect x="8" y="42" width="324" height="286" rx="6" fill="#ffffff" opacity="0.6"/>
+
+    <!-- ------------------------------------------------------------ -->
+    <!-- FRAME 1: DITHERED PORTRAIT OF SUDARSHAN CHAND                -->
+    <!-- ------------------------------------------------------------ -->
+    <g class="frame-pic">
+      <image href="data:image/png;base64,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" x="40" y="44" width="260" height="282" preserveAspectRatio="xMidYMid slice"/>
+      <text x="170" y="318" fill="#0284c7" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1" class="mono">[ SUDARSHAN CHAND ]</text>
+    </g>
+
+    <!-- ------------------------------------------------------------ -->
+    <!-- FRAME 2: DEVOPS CYCLE INFINITY LOOP ANIMATION                -->
+    <!-- ------------------------------------------------------------ -->
+    <g class="frame-devops pulse-elem">
+      <!-- Outer/Inner Infinity loop curves -->
+      <!-- Smooth lemniscate path centered at x=170, y=185 -->
+      <path d="M 90,185 C 90,135 140,135 170,185 C 200,235 250,235 250,185 C 250,135 200,135 170,185 C 140,235 90,235 90,185 Z" 
+            stroke="#cbd5e1" stroke-width="12" fill="none" stroke-linecap="round"/>
+      
+      <!-- Flowing neon stream -->
+      <path d="M 90,185 C 90,135 140,135 170,185 C 200,235 250,235 250,185 C 250,135 200,135 170,185 C 140,235 90,235 90,185 Z" 
+            stroke="url(#infGrad-light)" stroke-width="6" fill="none" stroke-linecap="round" class="inf-flow"/>
+
+      <!-- DevOps Phase Nodes -->
+      <!-- Plan (Top-Left) -->
+      <circle cx="112" cy="148" r="5" fill="#0f766e"/>
+      <text x="112" y="136" fill="#0f172a" font-size="9" font-weight="700" text-anchor="middle" class="mono">PLAN</text>
+
+      <!-- Build (Bottom-Left) -->
+      <circle cx="112" cy="222" r="5" fill="#0f766e"/>
+      <text x="112" y="240" fill="#0f172a" font-size="9" font-weight="700" text-anchor="middle" class="mono">BUILD</text>
+
+      <!-- Deploy (Top-Right) -->
+      <circle cx="228" cy="148" r="5" fill="#16a34a"/>
+      <text x="228" y="136" fill="#0f172a" font-size="9" font-weight="700" text-anchor="middle" class="mono">DEPLOY</text>
+
+      <!-- Operate/Monitor (Bottom-Right) -->
+      <circle cx="228" cy="222" r="5" fill="#16a34a"/>
+      <text x="228" y="240" fill="#0f172a" font-size="9" font-weight="700" text-anchor="middle" class="mono">MONITOR</text>
+
+      <!-- Center Logo & Label -->
+      <circle cx="170" cy="185" r="14" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
+      <text x="170" y="189" fill="#0284c7" font-size="10" font-weight="800" text-anchor="middle" class="mono">CI/CD</text>
+
+      <!-- Bottom Tag -->
+      <text x="170" y="285" fill="#0f766e" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5" class="mono">DEVOPS LIFECYCLE</text>
+      <text x="170" y="305" fill="#64748b" font-size="10" text-anchor="middle" class="mono">CONTINUOUS INTEGRATION &amp; DEPLOY</text>
+    </g>
+
+    <!-- ------------------------------------------------------------ -->
+    <!-- FRAME 3: AWS CLOUD ARCHITECTURE ANIMATION                    -->
+    <!-- ------------------------------------------------------------ -->
+    <g class="frame-aws pulse-elem">
+      <!-- Stylized AWS Cloud -->
+      <g transform="translate(95, 95)">
+        <!-- Cloud outline -->
+        <path d="M 40,80 A 28,28 0 0,1 78,40 A 42,42 0 0,1 138,48 A 30,30 0 0,1 155,75 A 24,24 0 0,1 150,110 L 40,110 A 25,25 0 0,1 40,80 Z" 
+              fill="#ffffff" stroke="url(#awsGrad-light)" stroke-width="4" stroke-linejoin="round"/>
+        
+        <!-- AWS Smile Arrow -->
+        <path d="M 42,128 Q 95,155 148,130" stroke="#FF9900" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M 148,130 L 138,124 M 148,130 L 140,138" stroke="#FF9900" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- AWS Service Badges inside cloud -->
+        <text x="96" y="82" fill="#FF9900" font-size="16" font-weight="900" text-anchor="middle" letter-spacing="2" class="mono">AWS</text>
+        <text x="96" y="98" fill="#64748b" font-size="9" font-weight="600" text-anchor="middle" class="mono">CLOUD PLATFORM</text>
+      </g>
+
+      <!-- Floating Cloud Infrastructure Nodes -->
+      <g transform="translate(45, 235)">
+        <rect x="0" y="0" width="55" height="22" rx="4" fill="#ffffff" stroke="#FF9900" stroke-width="1"/>
+        <text x="27" y="15" fill="#0f172a" font-size="10" font-weight="700" text-anchor="middle" class="mono">EKS</text>
+
+        <rect x="65" y="0" width="55" height="22" rx="4" fill="#ffffff" stroke="#FF9900" stroke-width="1"/>
+        <text x="92" y="15" fill="#0f172a" font-size="10" font-weight="700" text-anchor="middle" class="mono">EC2</text>
+
+        <rect x="130" y="0" width="55" height="22" rx="4" fill="#ffffff" stroke="#FF9900" stroke-width="1"/>
+        <text x="157" y="15" fill="#0f172a" font-size="10" font-weight="700" text-anchor="middle" class="mono">S3</text>
+
+        <rect x="195" y="0" width="55" height="22" rx="4" fill="#ffffff" stroke="#FF9900" stroke-width="1"/>
+        <text x="222" y="15" fill="#0f172a" font-size="10" font-weight="700" text-anchor="middle" class="mono">IAM</text>
+      </g>
+
+      <!-- Bottom Tag -->
+      <text x="170" y="285" fill="#FF9900" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5" class="mono">AMAZON WEB SERVICES</text>
+      <text x="170" y="305" fill="#64748b" font-size="10" text-anchor="middle" class="mono">HIGH AVAILABILITY · RESILIENT INFRA</text>
+    </g>
+
+    <!-- Visual Map Footer -->
+    <text x="0" y="358" fill="#64748b" font-size="10" class="mono">PTS 18000 · FS/SERPENTINE</text>
   </g>
 
-  <!-- Left Column: Terminal Data Fields -->
-  <g transform="translate(48, 80)">
-    <text x="0" y="0" fill="#0284c7" font-size="14" font-weight="700" class="mono">> sudo init --profile SUDARSHNACHAND</text>
+  <!-- ============================================================== -->
+  <!-- RIGHT PANEL: SYSTEM.INFO (740 x 380)                           -->
+  <!-- ============================================================== -->
+  <g transform="translate(420, 60)">
+    <!-- Header with Live badge -->
+    <text x="0" y="18" fill="#0f766e" font-size="13" font-weight="700" letter-spacing="1" class="mono">SYSTEM.INFO</text>
     
-    <g transform="translate(0, 32)">
+    <!-- Live Beacon -->
+    <g transform="translate(560, 6)">
+      <circle cx="6" cy="9" r="4.5" fill="#ef4444" class="live-dot"/>
+      <text x="18" y="13" fill="#ef4444" font-size="11" font-weight="700" class="mono">LIVE</text>
+    </g>
+
+    <!-- Handle Tag -->
+    <g transform="translate(630, 2)">
+      <rect width="105" height="22" rx="11" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="52" y="15" fill="#0284c7" font-size="11" font-weight="600" text-anchor="middle" class="mono">@SUDARSHNACHAND</text>
+    </g>
+
+    <line x1="0" y1="35" x2="735" y2="35" stroke="#cbd5e1" stroke-width="1"/>
+
+    <!-- Table of Attributes -->
+    <g transform="translate(0, 58)" font-size="12.5" class="mono">
       <!-- Row 1 -->
-      <text x="0" y="0" fill="#64748b" font-size="13" class="mono">Subject     :</text>
-      <text x="140" y="0" fill="#0f172a" font-size="13" font-weight="600" class="mono">Sudarshan Chand</text>
+      <text x="0" y="0" fill="#64748b">Subject</text>
+      <text x="150" y="0" fill="#cbd5e1">··············································</text>
+      <text x="735" y="0" fill="#0f172a" font-weight="700" text-anchor="end">Sudarshan Chand</text>
 
       <!-- Row 2 -->
-      <text x="0" y="26" fill="#64748b" font-size="13" class="mono">Role        :</text>
-      <text x="140" y="26" fill="#0f766e" font-size="13" font-weight="600" class="mono">Full-Stack Engineer &amp; Tech Explorer</text>
+      <text x="0" y="24" fill="#64748b">Role</text>
+      <text x="150" y="24" fill="#cbd5e1">··············································</text>
+      <text x="735" y="24" fill="#0284c7" font-weight="700" text-anchor="end">DevOps Engineer · Cloud Specialist</text>
 
       <!-- Row 3 -->
-      <text x="0" y="52" fill="#64748b" font-size="13" class="mono">Core.Stack  :</text>
-      <text x="140" y="52" fill="#1e293b" font-size="13" class="mono">TypeScript · Python · React · Next.js · Node.js</text>
+      <text x="0" y="48" fill="#64748b">Origin</text>
+      <text x="150" y="48" fill="#cbd5e1">··············································</text>
+      <text x="735" y="48" fill="#334155" text-anchor="end">India 🇮🇳</text>
 
       <!-- Row 4 -->
-      <text x="0" y="78" fill="#64748b" font-size="13" class="mono">Databases   :</text>
-      <text x="140" y="78" fill="#1e293b" font-size="13" class="mono">PostgreSQL · MongoDB · Redis</text>
+      <text x="0" y="72" fill="#64748b">Status</text>
+      <text x="150" y="72" fill="#cbd5e1">··············································</text>
+      <text x="735" y="72" fill="#16a34a" font-weight="600" text-anchor="end">Automating + Orchestrating + Deploying</text>
 
       <!-- Row 5 -->
-      <text x="0" y="104" fill="#64748b" font-size="13" class="mono">Infra/Cloud :</text>
-      <text x="140" y="104" fill="#1e293b" font-size="13" class="mono">Docker · Git · GitHub Actions · Cloud Native</text>
+      <text x="0" y="96" fill="#64748b">ToolChain</text>
+      <text x="150" y="96" fill="#cbd5e1">··············································</text>
+      <text x="735" y="96" fill="#0f172a" text-anchor="end">Git · Jenkins · Docker · K8s · Terraform</text>
 
       <!-- Row 6 -->
-      <text x="0" y="130" fill="#64748b" font-size="13" class="mono">Status      :</text>
-      <text x="140" y="130" fill="#15803d" font-size="13" font-weight="600" class="mono">Building · Shipping · Continuous Learning</text>
+      <text x="0" y="120" fill="#64748b">Core.Cloud</text>
+      <text x="150" y="120" fill="#cbd5e1">··············································</text>
+      <text x="735" y="120" fill="#FF9900" font-weight="600" text-anchor="end">AWS (EC2 · EKS · S3 · IAM · VPC · Lambda)</text>
 
       <!-- Row 7 -->
-      <text x="0" y="156" fill="#64748b" font-size="13" class="mono">Grid.GitHub :</text>
-      <text x="140" y="156" fill="#0284c7" font-size="13" class="mono">github.com/SUDARSHNACHAND</text>
+      <text x="0" y="144" fill="#64748b">Core.CI/CD</text>
+      <text x="150" y="144" fill="#cbd5e1">··············································</text>
+      <text x="735" y="144" fill="#0f766e" text-anchor="end">Jenkins Pipelines · GitHub Actions</text>
+
+      <!-- Row 8 -->
+      <text x="0" y="168" fill="#64748b">Core.IaC</text>
+      <text x="150" y="168" fill="#cbd5e1">··············································</text>
+      <text x="735" y="168" fill="#0f172a" text-anchor="end">Terraform · Ansible · Helm Charts</text>
+
+      <!-- Row 9 -->
+      <text x="0" y="192" fill="#64748b">Core.Observ</text>
+      <text x="150" y="192" fill="#cbd5e1">··············································</text>
+      <text x="735" y="192" fill="#334155" text-anchor="end">Prometheus · Grafana · CloudWatch</text>
+
+      <!-- Row 10 -->
+      <text x="0" y="216" fill="#64748b">Core.Lang</text>
+      <text x="150" y="216" fill="#cbd5e1">··············································</text>
+      <text x="735" y="216" fill="#0f172a" text-anchor="end">Python · Bash · JavaScript · Java</text>
+
+      <!-- Row 11 -->
+      <text x="0" y="240" fill="#64748b">Core.Database</text>
+      <text x="150" y="240" fill="#cbd5e1">··············································</text>
+      <text x="735" y="240" fill="#334155" text-anchor="end">MongoDB · MySQL</text>
+
+      <!-- Row 12 -->
+      <text x="0" y="264" fill="#64748b">Grid.GitHub</text>
+      <text x="150" y="264" fill="#cbd5e1">··············································</text>
+      <text x="735" y="264" fill="#0f766e" text-anchor="end">SUDARSHNACHAND</text>
     </g>
 
-    <!-- Terminal Command Line Prompt -->
-    <g transform="translate(0, 240)">
-      <text x="0" y="0" fill="#15803d" font-size="14" font-weight="700" class="mono">sudarshan@core:~$</text>
-      <text x="165" y="0" fill="#0f172a" font-size="14" class="mono">ready to build the future</text>
-      <rect x="365" y="-12" width="8" height="15" fill="#0284c7" class="pulseLight"/>
-    </g>
-  </g>
-
-  <!-- Right Column: Visual HUD Telemetry Box -->
-  <g transform="translate(730, 78)">
-    <rect width="400" height="280" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2"/>
-    
-    <!-- Header inside box -->
-    <text x="24" y="32" fill="#475569" font-size="12" font-weight="600" class="mono">TELEMETRY &amp; ARCHITECTURE</text>
-    <line x1="24" y1="44" x2="376" y2="44" stroke="#e2e8f0" stroke-width="1"/>
-
-    <!-- Mini Visual Grid / Circuit Elements -->
-    <g transform="translate(24, 60)">
-      <text x="0" y="20" fill="#64748b" font-size="11" class="mono">ARCH_MODE</text>
-      <text x="130" y="20" fill="#0f766e" font-size="12" font-weight="700" class="mono">DISTRIBUTED</text>
-
-      <text x="0" y="55" fill="#64748b" font-size="11" class="mono">LATENCY</text>
-      <text x="130" y="55" fill="#15803d" font-size="12" font-weight="700" class="mono">OPTIMAL (~12ms)</text>
-
-      <text x="0" y="90" fill="#64748b" font-size="11" class="mono">UPTIME</text>
-      <text x="130" y="90" fill="#0284c7" font-size="12" font-weight="700" class="mono">99.99% READY</text>
-
-      <text x="0" y="125" fill="#64748b" font-size="11" class="mono">SECURITY</text>
-      <text x="130" y="125" fill="#0f172a" font-size="12" font-weight="700" class="mono">ZERO TRUST / STRICT</text>
-    </g>
-
-    <!-- Progress / Activity Visuals -->
-    <g transform="translate(24, 215)">
-      <rect width="352" height="6" rx="3" fill="#e2e8f0"/>
-      <rect width="280" height="6" rx="3" fill="url(#emeraldGrad)"/>
-      <text x="0" y="24" fill="#64748b" font-size="11" class="mono">BUFFER: 80% CAPACITY</text>
-      <text x="290" y="24" fill="#0f766e" font-size="11" font-weight="600" class="mono">ONLINE</text>
+    <!-- Bottom Status Line -->
+    <line x1="0" y1="340" x2="735" y2="340" stroke="#cbd5e1" stroke-width="1"/>
+    <g transform="translate(0, 358)" font-size="11" class="mono">
+      <circle cx="5" cy="-3" r="3.5" fill="#16a34a"/>
+      <text x="16" y="0" fill="#16a34a" font-weight="600">ALL SYSTEMS NOMINAL</text>
+      <text x="735" y="0" fill="#64748b" text-anchor="end">UTC+5:30 · ASIA/KOLKATA NODE</text>
     </g>
   </g>
 </svg>
