@@ -10,6 +10,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import math
 from pathlib import Path
@@ -80,18 +81,20 @@ def render_svg(title: str, axes: list[tuple[str, float]], theme: dict, show_valu
         ly = cy + (radius + 18) * sin_a
         anchor = "middle" if abs(cos_a) < 0.25 else ("start" if cos_a > 0 else "end")
         val_text = f" ({int(val)}%)" if show_values else ""
+        safe_label = html.escape(f"{label}{val_text}")
         labels_svg.append(
             f'<text x="{lx:.1f}" y="{ly:.1f}" fill="{theme["label"]}" font-size="11.5" font-weight="500" '
-            f'text-anchor="{anchor}" dominant-baseline="central">{label}{val_text}</text>'
+            f'text-anchor="{anchor}" dominant-baseline="central">{safe_label}</text>'
         )
 
     polygon_svg = (
         f'<polygon points="{" ".join(poly_pts)}" fill="{theme["fill"]}" fill-opacity="0.22" '
         f'stroke="{theme["stroke"]}" stroke-width="2.2"/>'
     )
+    safe_title = html.escape(title)
     title_svg = (
         f'<text x="{cx}" y="26" fill="{theme["title"]}" font-size="14.5" font-weight="600" '
-        f'text-anchor="middle" letter-spacing="0.5">{title}</text>'
+        f'text-anchor="middle" letter-spacing="0.5">{safe_title}</text>'
     )
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">
@@ -119,9 +122,11 @@ def main():
 
     for mode in ("dark", "light"):
         svg = render_svg(title, axes, THEMES[mode], show_values=args.values)
-        out_path = Path(f"{args.out}-{mode}.svg")
+        out_path = Path(f"{args.out}-{mode}.v2.svg")
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(svg, encoding="utf-8")
+        # Also write standard filename
+        Path(f"{args.out}-{mode}.svg").write_text(svg, encoding="utf-8")
         print(f"Generated {out_path}")
 
 if __name__ == "__main__":

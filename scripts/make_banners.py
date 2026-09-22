@@ -2,7 +2,7 @@
 """
 make_banners.py - Generate 100% native vector SVG banners for SUDARSHNACHAND.
 Features:
-  - Left Panel (VISUAL.MAP): Pure vector dithered portrait of Sudarshan Chand (steady).
+  - Left Panel (VISUAL.MAP): Perfectly centered pure vector dithered portrait.
   - Right Panel (SYSTEM.INFO): Live terminal HUD attributes for DevOps Engineer role.
 """
 
@@ -18,16 +18,44 @@ def load_portrait_path() -> str:
     if not txt_file.exists():
         return ""
     
-    points = []
+    raw_points = []
     with open(txt_file, "r", encoding="ascii") as f:
         for line in f:
             line = line.strip()
             if line:
                 x, y = line.split(",")
-                points.append((int(x), int(y)))
+                raw_points.append((int(x), int(y)))
+
+    if not raw_points:
+        return ""
+
+    # Bounding box of original points
+    xs = [p[0] for p in raw_points]
+    ys = [p[1] for p in raw_points]
+    min_x, max_x = min(xs), max(xs)
+    min_y, max_y = min(ys), max(ys)
+    orig_w = max_x - min_x
+    orig_h = max_y - min_y
+
+    # Frame target dimensions in VISUAL.MAP (Width: 340, Bracket height: 35 to 335)
+    target_w = 236.0
+    target_h = 266.0
+    scale = min(target_w / orig_w, target_h / orig_h)
+    actual_w = orig_w * scale
+    actual_h = orig_h * scale
+
+    # Exact centering
+    offset_x = (340.0 - actual_w) / 2.0
+    offset_y = 44.0 + (268.0 - actual_h) / 2.0
+
+    normalized_points = []
+    for x, y in raw_points:
+        nx = int(offset_x + (x - min_x) * scale)
+        ny = int(offset_y + (y - min_y) * scale)
+        normalized_points.append((nx, ny))
 
     # Sort by Y then X
-    unique = sorted(set(points), key=lambda p: (p[1], p[0]))
+    unique = sorted(set(normalized_points), key=lambda p: (p[1], p[0]))
     chunks = []
     i = 0
     n = len(unique)
@@ -118,12 +146,12 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
     <path d="M 340 335 L 340 320 M 340 335 L 325 335" stroke="{cyan}" stroke-width="2" fill="none"/>
 
     <!-- Content Area Background -->
-    <rect x="8" y="42" width="324" height="286" rx="6" fill="{panel_bg}" opacity="0.6"/>
+    <rect x="15" y="40" width="310" height="286" rx="6" fill="{panel_bg}" opacity="0.6"/>
 
-    <!-- PURE VECTOR DITHERED PORTRAIT (SUDARSHAN CHAND) -->
+    <!-- PURE VECTOR DITHERED PORTRAIT (SUDARSHAN CHAND) - CENTERED -->
     <g>
-      <path d="{portrait_path_data}" stroke="{accent}" stroke-width="1.1" fill="none"/>
-      <text x="170" y="318" fill="{accent}" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1" class="mono">[ SUDARSHAN CHAND ]</text>
+      <path d="{portrait_path_data}" stroke="{accent}" stroke-width="1.15" fill="none"/>
+      <text x="170" y="324" fill="{accent}" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="1" class="mono">[ SUDARSHAN CHAND ]</text>
     </g>
 
     <text x="0" y="358" fill="{text_dim}" font-size="10" class="mono">PTS 18000 · FS/SERPENTINE</text>
@@ -207,15 +235,15 @@ def generate_banner(theme: str, portrait_path_data: str) -> str:
     return svg
 
 def main():
-    print("Loading portrait points...")
+    print("Centering and loading portrait points...")
     portrait_path_data = load_portrait_path()
     print(f"Portrait path loaded ({len(portrait_path_data)} chars).")
 
     for theme in ("dark", "light"):
         svg = generate_banner(theme, portrait_path_data)
-        out_file = ASSETS / f"banner-{theme}.v2.svg"
+        out_file = ASSETS / f"banner-{theme}.v3.svg"
         out_file.write_text(svg, encoding="utf-8")
-        # Also write standard name
+        # Also update standard file
         (ASSETS / f"banner-{theme}.svg").write_text(svg, encoding="utf-8")
         
         # Verify XML validity!

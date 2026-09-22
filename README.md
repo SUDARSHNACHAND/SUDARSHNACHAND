@@ -2,9 +2,9 @@
 
 <!-- BANNER - Terminal HUD (Dynamic Dark / Light Mode with Cycling Animations: Portrait -> DevOps Cycle -> AWS Cloud) -->
 <picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.v2.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v2.svg">
-  <img src="assets/banner-dark.v2.svg" width="100%" alt="profile.sh --live">
+  <source media="(prefers-color-scheme: dark)"  srcset="assets/banner-dark.v3.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v3.svg">
+  <img src="assets/banner-dark.v3.svg" width="100%" alt="profile.sh --live">
 </picture>
 
 <br>
@@ -114,9 +114,9 @@ I build resilient cloud architectures, automate deployment pipelines, and ensure
 
 <!-- DevOps Competencies Radar - edit assets/skills.json to update -->
 <picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/radar-light.svg">
-  <img src="assets/radar-dark.svg" width="400" alt="DevOps competencies radar chart">
+  <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-dark.v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/radar-light.v2.svg">
+  <img src="assets/radar-dark.v2.svg" width="400" alt="DevOps competencies radar chart">
 </picture>
 
 </td>
@@ -124,9 +124,9 @@ I build resilient cloud architectures, automate deployment pipelines, and ensure
 
 <!-- Language & IaC Stack Radar - edit assets/langmix.json to update -->
 <picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-langs-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/radar-langs-light.svg">
-  <img src="assets/radar-langs-dark.svg" width="400" alt="Language and IaC stack radar chart">
+  <source media="(prefers-color-scheme: dark)"  srcset="assets/radar-langs-dark.v2.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/radar-langs-light.v2.svg">
+  <img src="assets/radar-langs-dark.v2.svg" width="400" alt="Language and IaC stack radar chart">
 </picture>
 
 </td>
